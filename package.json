@@ -1,0 +1,11 @@
+{
+  "name": "algorithm",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/winixt/algorithm.git",
+  "author": "bac-joker <haizekuo@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babylon": "^6.18.0"
+  }
+}

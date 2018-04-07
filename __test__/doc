@@ -1,0 +1,25 @@
+# if else  else if for return function
+
+// if | else | else if  语法格式
+if (/* ... */) { // do something }
+else (/* ... */) { // do something }
+else if (/* ... */) { // do something }
+
+// for 语法格式
+for (/* ... */; /* ... */ ; /* ... */) {
+
+}
+
+// return 语法格式
+return; // do something
+
+// function 声明语法格式
+function  functionName(/* ... */) { // do something }
+const functionName = function(/* ... */) {// do something }
+() => {}
+
+
+// function 运行语法
+functionName(/* ... */);
+obj.functionName(/* ... */);
+
