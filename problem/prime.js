@@ -1,7 +1,6 @@
 // 查找素数
 
 function prime(n) {
-  console.time
   const result = Math.sqrt(n);
   for (let i = 2; i <= result; i++) {
     if (n % i === 0) {
@@ -16,7 +15,6 @@ function main() {
   let count = 0;
   for (let i = 2; i <= n; i++) {
     if (prime(i)) {
-      console.log(i)
       count++;
     }
   }

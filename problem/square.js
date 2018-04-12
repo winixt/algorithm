@@ -44,12 +44,12 @@ class Square {
       if (this.contantPoint(r.point)) {  // 以 r 的最小点为交叉最小点
           let Iwidth = Math.min(r.width, this.point.x + this.width - r.point.x);
           let Iheight = Math.min(r.height, this.point.y + this.height - r.point.y);
-          return new R(r.point.copy(), Iwidth, Iheight);
+          return new Square(r.point.copy(), Iwidth, Iheight);
       }
       // 以自身的最小点为交叉最小点 （这两块可以合并为一个函数）
       let Iwidth = Math.min(this.width, r.point.x + r.width - this.point.x);
       let Iheight = Math.min(this.height, r.point.y + r.height - this.point.y);
-      return new R(this.point.copy(), Iwidth, Iheight);
+      return new Square(this.point.copy(), Iwidth, Iheight);
   }
 }
 

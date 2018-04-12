@@ -2,8 +2,7 @@
  实现性能测试工具
  1. 使用 count 统计 if else for function 运行次数
  2. 使用 performance 统计函数运行时间
- */
-
+*/
 const utils = require('../utils');
 
 function func() {

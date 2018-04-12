@@ -11,7 +11,9 @@ function swap(arr, from, to) {
 
 function canSwap(arr, begin, end) {
   for (let i = begin; i < end; i++) {
-    if (arr[i] === arr[end]) return false; // begin - (end - 1) 不应该有和 end 相同的内容
+    if (arr[i] === arr[end]) {
+      return false; // begin - (end - 1) 不应该有和 end 相同的内容
+    }
   }
   return true;
 }
