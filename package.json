@@ -5,6 +5,8 @@
   "repository": "https://github.com/winixt/algorithm.git",
   "author": "bac-joker <haizekuo@gmail.com>",
   "license": "MIT",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "debug": "^4.1.1"
   }
 }
