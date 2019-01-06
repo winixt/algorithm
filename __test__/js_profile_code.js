@@ -30,11 +30,6 @@ process.on('exit', () => {
     profile: global._profile
   })
 })
-/*
- 实现性能测试工具
- 1. 使用 count 统计 if else for function 运行次数
- 2. 使用 performance 统计函数运行时间
-*/
 const utils = require('../utils');
 
 function func() {
@@ -42,52 +37,89 @@ function func() {
   const nums = [];
 
   for (let i = 0; i < count; i++) {
-    __count('BlockStatement', 12, 34)
+    __count('BlockStatement', 7, 34)
 
     ;
 
     (function __prof() {
-      const start = performance.now();
-      const result = nums.push(utils.random(0, count));
-      const end = performance.now();
+      const __start = performance.now();
 
-      __profileFunc('nums_push', end - start);
+      const __result = nums.push(utils.random(0, count));
 
-      return result;
+      const __end = performance.now();
+
+      __profileFunc('nums_push', __end - __start);
+
+      return __result;
     })();
   }
 
   let min = max = nums[0];
+  (function __prof() {
+    const __start = performance.now();
+
+    const __result = console.log(nums.slice(0, 10));
+
+    const __end = performance.now();
+
+    __profileFunc('console_log', __end - __start);
+
+    return __result;
+  })();
 
   for (let i = 1; i < count; i++) {
-    __count('BlockStatement', 18, 34)
+    __count('BlockStatement', 14, 34)
 
     ;
 
-    if (__count('IfStatement', 19, 4) || nums[i] > max) {
+
+    /* 如果是最大值，那么不可能同时是最小值，两个 if 语句可以合并到一起，用以减少 if 的比较次数  version 1.0
+    if (nums[i] > max) {
       max = nums[i];
     }
-    if (__count('IfStatement', 23, 4) || nums[i] < min) {
+    if (nums[i] < min) {
+      min = nums[i]
+    }
+    */
+    // 合并 if 语句 version 2.0 
+    if (__count('IfStatement', 25, 4) || nums[i] < min) {
       min = nums[i];
+      (function __prof() {
+        const __start = performance.now();
+
+        const __result = console.log(nums[i]);
+
+        const __end = performance.now();
+
+        __profileFunc('console_log', __end - __start);
+
+        return __result;
+      })();
+    } else if (__count('IfStatement', 28, 11) || nums[i] > max) {
+      max = nums[i];
     }
   }
   (function __prof() {
-    const start = performance.now();
-    const result = console.log(min, max);
-    const end = performance.now();
+    const __start = performance.now();
 
-    __profileFunc('console_log', end - start);
+    const __result = console.log(min, max);
 
-    return result;
+    const __end = performance.now();
+
+    __profileFunc('console_log', __end - __start);
+
+    return __result;
   })();
 }
 
 (function __prof() {
-  const start = performance.now();
-  const result = func();
-  const end = performance.now();
+  const __start = performance.now();
 
-  __profileFunc('func', end - start);
+  const __result = func();
 
-  return result;
+  const __end = performance.now();
+
+  __profileFunc('func', __end - __start);
+
+  return __result;
 })();
