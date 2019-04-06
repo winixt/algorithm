@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="outer"></div>
+    <script>
+        const channel = new MessageChannel();
+        const arr = [];
+        const { port1, port2 } = channel;
+        requestAnimationFrame((time) => {
+            port1.postMessage(time)
+            Promise.resolve().then(() => {
+                arr.push('promise2: ' + time)
+            })
+            $outer.click();
+            arr.push('frame');
+            // Promise.resolve().then(_ => console.log('promise2')) // 注册微任务
+            
+        });
+        port2.onmessage = (time) => {
+            arr.push('channel: ' + performance.now());
+        };
+        Promise.resolve().then(() => {
+            arr.push('promise')
+        })
+        const $inner = document.querySelector('#inner')
+        const $outer = document.querySelector('#outer')
+
+        function handler() {
+            arr.push('click') // 直接输出
+        }
+
+        $outer.addEventListener('click', handler)
+
+        let t = setTimeout(() => {
+            // clearTimeout(t);
+            arr.push('time: ' + performance.now());
+        }, 4)
+        let count = 0;
+        setTimeout(() => {
+            console.log(arr);
+        }, 500)
+        
+    </script>
+</body>
+</html>
